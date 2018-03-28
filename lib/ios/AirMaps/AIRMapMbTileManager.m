@@ -4,7 +4,7 @@
 //
 //  Created by Christoph Lambio on 27/03/2018.
 //  Based on AIRMapLocalTileManager.m
-//  Copyright © 2017 Christopher. All rights reserved.
+//  Copyright (c) 2017 Christopher. All rights reserved.
 //
 
 #import <React/RCTBridge.h>
