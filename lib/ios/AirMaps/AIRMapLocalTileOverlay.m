@@ -16,6 +16,10 @@
 
 -(void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *, NSError *))result {
     NSMutableString *tileFilePath = [self.URLTemplate mutableCopy];
+    NSLog(@"%@", tileFilePath);
+    NSLog(@"Logged from LocalTile: %@", [NSString stringWithFormat:@"%i", path.x]);
+    NSLog(@"Logged from LocalTile: %@", [NSString stringWithFormat:@"%i", path.y]);
+    NSLog(@"Logged from LocalTile: %@", [NSString stringWithFormat:@"%i", path.z]);
     [tileFilePath replaceOccurrencesOfString: @"{x}" withString:[NSString stringWithFormat:@"%i", path.x] options:NULL range:NSMakeRange(0, tileFilePath.length)];
     [tileFilePath replaceOccurrencesOfString:@"{y}" withString:[NSString stringWithFormat:@"%i", path.y] options:NULL range:NSMakeRange(0, tileFilePath.length)];
     [tileFilePath replaceOccurrencesOfString:@"{z}" withString:[NSString stringWithFormat:@"%i", path.z] options:NULL range:NSMakeRange(0, tileFilePath.length)];
