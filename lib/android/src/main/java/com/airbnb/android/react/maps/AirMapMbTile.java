@@ -14,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.sql.*;
+
 /**
  * Created by Christoph Lambio on 30/03/2018.
  * Based on AirMapLocalTileManager.java
@@ -51,6 +53,25 @@ public class AirMapMbTile extends AirMapFeature {
             InputStream in = null;
             ByteArrayOutputStream buffer = null;
             File file = new File(getTileFilename(x, y, zoom));
+
+            try {
+                Class.forName("org.sqlite.JDBC");
+                String dbURL = "sdcard/dhaka2.mbtiles";
+                Connection conn = DriverManager.getConnection(dbURL);
+                if (conn != null) {
+                    System.out.println("Connected to the database");
+                    DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
+                    System.out.println("Driver name: " + dm.getDriverName());
+                    System.out.println("Driver version: " + dm.getDriverVersion());
+                    System.out.println("Product name: " + dm.getDatabaseProductName());
+                    System.out.println("Product version: " + dm.getDatabaseProductVersion());
+                    conn.close();
+                }
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
 
             try {
                 in = new FileInputStream(file);
