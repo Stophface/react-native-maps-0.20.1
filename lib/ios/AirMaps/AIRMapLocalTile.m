@@ -9,12 +9,36 @@
 #import "AIRMapLocalTile.h"
 #import <React/UIView+React.h>
 #import "AIRMapLocalTileOverlay.h"
+#import "FMDatabase.h"
+
+/** @interface AIRMapLocalTile ()
+{
+    FMDatabase* _database;
+}
+@end
+ */
 
 @implementation AIRMapLocalTile {
     BOOL _pathTemplateSet;
     BOOL _tileSizeSet;
+    
+    NSString *_pathTemplate;
 }
-
+/**
+- (void)sameDatabase:(NSString *)pathTemplate{
+    if ([_pathTemplate isEqualToString:pathTemplate])
+    {
+        [self createTileOverlayAndRendererIfPossible];
+        [self update];
+    } else {
+        _pathTemplate = pathTemplate;
+        FMDatabase *offlineDataDatabase = [FMDatabase databaseWithPath:pathTemplate];
+        _database = [offlineDataDatabase open];
+        [self createTileOverlayAndRendererIfPossible];
+        [self update];
+    }
+}
+*/
 
 - (void)setPathTemplate:(NSString *)pathTemplate{
     _pathTemplate = pathTemplate;
