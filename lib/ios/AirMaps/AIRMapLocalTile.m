@@ -15,7 +15,6 @@
     BOOL _tileSizeSet;
 }
 
-
 - (void)setPathTemplate:(NSString *)pathTemplate{
     _pathTemplate = pathTemplate;
     _pathTemplateSet = YES;

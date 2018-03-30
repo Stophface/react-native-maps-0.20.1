@@ -16,7 +16,6 @@
     BOOL _tileSizeSet;
 }
 
-
 - (void)setPathTemplate:(NSString *)pathTemplate{
     _pathTemplate = pathTemplate;
     _pathTemplateSet = YES;
@@ -34,7 +33,6 @@
 - (void) createTileOverlayAndRendererIfPossible
 {
     if (!_pathTemplateSet || !_tileSizeSet) return;
-    NSLog(@"Logged from AirMapMbTile.m");
     self.tileOverlay = [[AIRMapMbTileOverlay alloc] initWithURLTemplate:self.pathTemplate];
     self.tileOverlay.canReplaceMapContent = YES;
     self.tileOverlay.tileSize = CGSizeMake(_tileSize, _tileSize);

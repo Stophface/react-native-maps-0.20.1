@@ -37,3 +37,4 @@ RCT_EXPORT_VIEW_PROPERTY(pathTemplate, NSString)
 RCT_EXPORT_VIEW_PROPERTY(tileSize, CGFloat)
 
 @end
+
