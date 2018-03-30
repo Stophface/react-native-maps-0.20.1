@@ -6,6 +6,7 @@ export { default as Polygon } from './lib/components/MapPolygon.js';
 export { default as Circle } from './lib/components/MapCircle.js';
 export { default as UrlTile } from './lib/components/MapUrlTile.js';
 export { default as LocalTile } from './lib/components/MapLocalTile.js';
+export { default as MbTile } from './lib/components/MapMbTile.js';
 export { default as Overlay } from './lib/components/MapOverlay.js';
 export { default as Callout } from './lib/components/MapCallout.js';
 export { default as AnimatedRegion } from './lib/components/AnimatedRegion.js';

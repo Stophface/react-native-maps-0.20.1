@@ -17,6 +17,16 @@
 #import "AIRMap.h"
 #import "RCTConvert+AirMap.h"
 
+#import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+#import <UIKit/UIKit.h>
+
+#import <React/RCTComponent.h>
+#import <React/RCTView.h>
+#import "AIRMapCoordinate.h"
+#import "AIRMap.h"
+#import "RCTConvert+AirMap.h"
+
 @interface AIRMapMbTile : MKAnnotationView <MKOverlay>
 
 @property (nonatomic, weak) AIRMap *map;
@@ -35,3 +45,4 @@
 - (BOOL)canReplaceMapContent;
 
 @end
+

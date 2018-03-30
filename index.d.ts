@@ -175,6 +175,12 @@ declare module "react-native-maps" {
         zIndex?: number;
     }
 
+    export interface MapMbTileProps {
+        pathTemplate: string;
+        tileSize: number;
+        zIndex?: number;
+    }
+
     export interface MapCalloutProps {
         tooltip?: boolean;
         onPress?: Function;
@@ -191,5 +197,6 @@ declare module "react-native-maps" {
     export class Circle extends React.Component<MapCircleProps, any> { }
     export class UrlTile extends React.Component<MapUrlTileProps, any> { }
     export class LocalTile extends React.Component<MapLocalTileProps, any> { }
+    export class MbTile extends React.Component<MapMbTileProps, any> { }
     export class Callout extends React.Component<MapCalloutProps, any> { }
 }
