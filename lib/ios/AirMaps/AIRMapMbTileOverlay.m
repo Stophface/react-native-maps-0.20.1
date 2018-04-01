@@ -19,8 +19,6 @@
 
 -(void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *, NSError *))result {
     NSMutableString *tileFilePath = [self.URLTemplate mutableCopy];
-    // https://gist.github.com/tmcw/4954720
-    // http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
     NSString *pathDummyData = [[NSBundle mainBundle] pathForResource:@"dhaka2" ofType:@"mbtiles"];
     FMDatabase *offlineDataDatabase = [FMDatabase databaseWithPath:pathDummyData];
     [offlineDataDatabase open];
