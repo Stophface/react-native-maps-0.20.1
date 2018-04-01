@@ -14,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.database.sqlite.SQLiteDatabase;
+
 /**
  * Created by Christoph Lambio on 30/03/2018.
  * Based on AirMapLocalTileManager.java
