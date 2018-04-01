@@ -61,6 +61,8 @@ public class AirMapMbTile extends AirMapFeature {
                 Cursor cursor = offlineDataDatabase.rawQuery(query, null);
                 if(cursor.moveToFirst()){
                     byte[] tile = cursor.getBlob(5);
+                    cursor.close();
+                    offlineDataDatabase.close();
                     return tile;
                 }
                 return null;
