@@ -14,6 +14,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.os.Environment;
+import android.util.Log;
+// import java.util.ArrayList;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.Cursor;
+
 public class AirMapLocalTile extends AirMapFeature {
 
     class AIRMapLocalTileProvider implements TileProvider {
@@ -44,31 +51,64 @@ public class AirMapLocalTile extends AirMapFeature {
         private byte[] readTileImage(int x, int y, int zoom) {
             InputStream in = null;
             ByteArrayOutputStream buffer = null;
-            File file = new File(getTileFilename(x, y, zoom));
+            String rawQuery = "SELECT * FROM map INNER JOIN images ON map.tile_id = images.tile_id WHERE map.zoom_level = {z} AND map.tile_column = {x} AND map.tile_row = {y}";
+            // File file = new File(getTileFilename(x, y, zoom));
+            Log.d("XX", Integer.toString(x));
+            Log.d("yy", Integer.toString(y));
+            Log.d("zz", Integer.toString(zoom));
 
             try {
-                in = new FileInputStream(file);
-                buffer = new ByteArrayOutputStream();
+                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "dhaka2.mbtiles";
+                Log.d("Files", "Path: " + path);
+                SQLiteDatabase offlineDataDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
+                // TMS TRANSFORMATION
+                // y = (2^z) - y - 1
+                Double yDouble = Math.pow(2, zoom) - y - 1;
+                y = yDouble.intValue();
+                String query = rawQuery.replace("{x}", Integer.toString(x))
+                        .replace("{y}", Integer.toString(y))
+                        .replace("{z}", Integer.toString(zoom));
+                Log.d("Query", query);
+                Cursor cursor = offlineDataDatabase.rawQuery(query, null);
+                Log.d("Cursor", DatabaseUtils.dumpCursorToString(cursor));
 
-                int nRead;
-                byte[] data = new byte[BUFFER_SIZE];
-
-                while ((nRead = in.read(data, 0, BUFFER_SIZE)) != -1) {
-                    buffer.write(data, 0, nRead);
+                if(cursor.moveToFirst()){
+                    byte[] tile = cursor.getBlob(5);
+                    return tile;
                 }
-                buffer.flush();
+                return null;
 
-                return buffer.toByteArray();
-            } catch (IOException e) {
+
+            } catch (Exception e) {
                 e.printStackTrace();
                 return null;
-            } catch (OutOfMemoryError e) {
-                e.printStackTrace();
-                return null;
-            } finally {
-                if (in != null) try { in.close(); } catch (Exception ignored) {}
-                if (buffer != null) try { buffer.close(); } catch (Exception ignored) {}
             }
+
+
+
+            // try {
+                // in = new FileInputStream(file);
+                // buffer = new ByteArrayOutputStream();
+
+                // int nRead;
+                // byte[] data = new byte[BUFFER_SIZE];
+
+                // while ((nRead = in.read(data, 0, BUFFER_SIZE)) != -1) {
+                    // buffer.write(data, 0, nRead);
+                // }
+                // buffer.flush();
+
+                // return buffer.toByteArray();
+            // } catch (IOException e) {
+                // e.printStackTrace();
+                // return null;
+            // } catch (OutOfMemoryError e) {
+                // e.printStackTrace();
+                // return null;
+            // } finally {
+                // if (in != null) try { in.close(); } catch (Exception ignored) {}
+                // if (buffer != null) try { buffer.close(); } catch (Exception ignored) {}
+            // }
         }
 
         private String getTileFilename(int x, int y, int zoom) {
