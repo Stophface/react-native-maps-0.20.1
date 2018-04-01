@@ -163,7 +163,7 @@ public class AirMapMbTile extends AirMapFeature {
         }
     }
 
-    public void setTileSpecification(float zIndex) {
+    public void setTileSpecification(String tileSpecification) {
         this.tileSpecification = tileSpecification;
     }
 
