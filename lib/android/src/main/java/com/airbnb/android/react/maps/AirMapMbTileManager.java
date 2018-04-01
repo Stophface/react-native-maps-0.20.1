@@ -41,9 +41,7 @@ public class AirMapMbTileManager extends ViewGroupManager<AirMapMbTile> {
     }
 
     @ReactProp(name = "pathTemplate")
-    public void setPathTemplate(AirMapMbTile view, String pathTemplate) {
-        view.setPathTemplate(pathTemplate);
-    }
+    public void setPathTemplate(AirMapMbTile view, String pathTemplate) { view.setPathTemplate(pathTemplate); }
 
     @ReactProp(name = "tileSize", defaultFloat = 256f)
     public void setTileSize(AirMapMbTile view, float tileSize) {
