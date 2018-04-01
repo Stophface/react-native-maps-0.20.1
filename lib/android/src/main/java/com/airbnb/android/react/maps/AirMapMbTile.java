@@ -35,6 +35,7 @@ public class AirMapMbTile extends AirMapFeature {
         private static final int BUFFER_SIZE = 16 * 1024;
         private int tileSize;
         private String pathTemplate;
+        private String tileSpecification;
 
 
         public AIRMapMbTileProvider(int tileSizet, String pathTemplate) {
@@ -52,6 +53,10 @@ public class AirMapMbTile extends AirMapFeature {
             this.pathTemplate = pathTemplate;
         }
 
+        public void setTileSpecification(String tileSpecification) {
+            this.tileSpecification = tileSpecification;
+        }
+
         public void setTileSize(int tileSize) {
             this.tileSize = tileSize;
         }
@@ -64,6 +69,7 @@ public class AirMapMbTile extends AirMapFeature {
             Log.d("XX", Integer.toString(x));
             Log.d("yy", Integer.toString(y));
             Log.d("zz", Integer.toString(zoom));
+            Log.d("Tile Specification", this.tileSpecification);
 
             try {
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "dhaka2.mbtiles";

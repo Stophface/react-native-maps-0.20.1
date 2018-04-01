@@ -179,6 +179,7 @@ declare module "react-native-maps" {
         pathTemplate: string;
         tileSize: number;
         zIndex?: number;
+        tileSpecification: string;
     }
 
     export interface MapCalloutProps {
