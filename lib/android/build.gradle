@@ -37,5 +37,4 @@ dependencies {
   provided "com.facebook.react:react-native:+"
   compile "com.google.android.gms:play-services-base:10.2.4"
   compile "com.google.android.gms:play-services-maps:10.2.4"
-  compile files("lib/sqlite-jdbc-3.21.0.jar")
 }

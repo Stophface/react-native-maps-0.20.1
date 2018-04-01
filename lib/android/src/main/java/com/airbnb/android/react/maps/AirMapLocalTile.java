@@ -14,6 +14,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.os.Environment;
+import android.util.Log;
+// import java.util.ArrayList;
+import android.database.sqlite.SQLiteDatabase;
+
 public class AirMapLocalTile extends AirMapFeature {
 
     class AIRMapLocalTileProvider implements TileProvider {
@@ -45,6 +50,13 @@ public class AirMapLocalTile extends AirMapFeature {
             InputStream in = null;
             ByteArrayOutputStream buffer = null;
             File file = new File(getTileFilename(x, y, zoom));
+
+            String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "dhaka2.mbtiles";
+            Log.d("Files", "Path: " + path);
+            SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
+
+            
+
 
             try {
                 in = new FileInputStream(file);
