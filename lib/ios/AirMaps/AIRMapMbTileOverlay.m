@@ -25,8 +25,7 @@
     NSMutableString *query = [NSMutableString stringWithString: @"SELECT * FROM map INNER JOIN images ON map.tile_id = images.tile_id WHERE map.zoom_level = {z} AND map.tile_column = {x} AND map.tile_row = {y};"];
     [query replaceCharactersInRange: [query rangeOfString: @"{z}"] withString:[NSString stringWithFormat:@"%li", path.z]];
     [query replaceCharactersInRange: [query rangeOfString: @"{x}"] withString:[NSString stringWithFormat:@"%li", path.x]];
-    NSInteger y = (int)pow((double)2, (double)path.z) - path.y - 1;
-    [query replaceCharactersInRange: [query rangeOfString: @"{y}"] withString:[NSString stringWithFormat:@"%li", y]];
+    [query replaceCharactersInRange: [query rangeOfString: @"{y}"] withString:[NSString stringWithFormat:@"%li", path.y]];
     FMResultSet *databaseResult = [offlineDataDatabase executeQuery:query];
     if ([databaseResult next]) {
         NSData *tile = [databaseResult dataForColumn:@"tile_data"];

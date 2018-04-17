@@ -53,8 +53,6 @@ public class AirMapMbTile extends AirMapFeature {
             try {
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "dhaka2.mbtiles";
                 SQLiteDatabase offlineDataDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
-                Double yDouble = Math.pow(2, zoom) - y - 1;
-                y = yDouble.intValue();
                 String query = rawQuery.replace("{x}", Integer.toString(x))
                         .replace("{y}", Integer.toString(y))
                         .replace("{z}", Integer.toString(zoom));
