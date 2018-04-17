@@ -62,6 +62,7 @@ public class AirMapMbTile extends AirMapFeature {
                     offlineDataDatabase.close();
                     return tile;
                 }
+                offlineDataDatabase.close();
                 return null;
             } catch (Exception e) {
                 e.printStackTrace();
