@@ -51,10 +51,7 @@ public class AirMapMbTile extends AirMapFeature {
             String rawQuery = "SELECT * FROM map INNER JOIN images ON map.tile_id = images.tile_id WHERE map.zoom_level = {z} AND map.tile_column = {x} AND map.tile_row = {y}";
 
             try {
-                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "dhaka2.mbtiles";
-                SQLiteDatabase offlineDataDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
-                Double yDouble = Math.pow(2, zoom) - y - 1;
-                y = yDouble.intValue();
+                SQLiteDatabase offlineDataDatabase = SQLiteDatabase.openDatabase(this.pathTemplate, null, SQLiteDatabase.OPEN_READONLY);
                 String query = rawQuery.replace("{x}", Integer.toString(x))
                         .replace("{y}", Integer.toString(y))
                         .replace("{z}", Integer.toString(zoom));
@@ -65,6 +62,7 @@ public class AirMapMbTile extends AirMapFeature {
                     offlineDataDatabase.close();
                     return tile;
                 }
+                offlineDataDatabase.close();
                 return null;
             } catch (Exception e) {
                 e.printStackTrace();
